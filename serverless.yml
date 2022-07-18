@@ -8,15 +8,17 @@ provider:
 
 custom:
   fileUploadBucketName: ${self:service}-bucket-${self:provider.stage}
+
 plugins:
   - serverless-iam-roles-per-function
+
 functions:
   s3FileUploader:
     handler: src/uploader.handler
     name: s3-file-uploader
-    description: A lambda handler that uploads a file to an S2 Bucket base on API Gateway
-    timeout: 60 #second
-    memorySize: 128 #mb
+    description: A lambda handler that uploads a file to an S3 bucket based on an API Gateway trigger.
+    timeout: 60 # seconds
+    memorySize: 128 # mb
     events:
       - http:
           path: images
